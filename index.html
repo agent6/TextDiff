@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TextDiff</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__title">
+        <h1>TextDiff</h1>
+        <p>Front-end only, side-by-side text diff with inline highlights.</p>
+      </div>
+      <div class="header__actions">
+        <button id="swapBtn" type="button" class="btn btn--ghost">Swap</button>
+        <button id="sampleBtn" type="button" class="btn btn--ghost">Clear</button>
+        <button id="diffBtn" type="button" class="btn btn--primary">Diff</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="inputs" aria-label="Inputs">
+        <div class="input">
+          <div class="input__label">
+            <span>Left</span>
+            <span class="hint">Paste text here</span>
+          </div>
+          <div class="input__body">
+            <textarea id="leftInput" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            <button
+              id="leftPasteBtn"
+              type="button"
+              class="clipBtn"
+              data-target="left"
+              hidden
+              aria-label="Paste from clipboard into left input"
+            >
+              Paste from clipboard
+            </button>
+          </div>
+        </div>
+        <div class="input">
+          <div class="input__label">
+            <span>Right</span>
+            <span class="hint">Paste text here</span>
+          </div>
+          <div class="input__body">
+            <textarea id="rightInput" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+            <button
+              id="rightPasteBtn"
+              type="button"
+              class="clipBtn"
+              data-target="right"
+              hidden
+              aria-label="Paste from clipboard into right input"
+            >
+              Paste from clipboard
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Options">
+        <div class="controls__group">
+          <label class="control">
+            <input id="ignoreCase" type="checkbox" />
+            Ignore case
+          </label>
+          <label class="control">
+            <input id="trimWhitespace" type="checkbox" checked />
+            Trim line ends
+          </label>
+          <label class="control">
+            <input id="collapseWhitespace" type="checkbox" />
+            Collapse whitespace
+          </label>
+        </div>
+        <div class="controls__group">
+          <label class="control">
+            <input id="inlineDiff" type="checkbox" checked />
+            Inline diff on changed lines
+          </label>
+        </div>
+        <div class="controls__group controls__group--right">
+          <div id="summary" class="summary" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="results" aria-label="Diff results">
+        <div class="results__pane">
+          <div class="results__paneTitle">Left</div>
+          <div id="leftPane" class="pane" role="region" aria-label="Left diff output"></div>
+        </div>
+        <div class="results__pane">
+          <div class="results__paneTitle">Right</div>
+          <div id="rightPane" class="pane" role="region" aria-label="Right diff output"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Tip: Use the options to ignore whitespace/case for matching; the original text is still displayed.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
